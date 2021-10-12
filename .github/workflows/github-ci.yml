@@ -15,19 +15,19 @@ jobs:
           distribution: 'adopt'
 
       - name: License check
-        run: mvn license:check
+        run: mvn -B license:check
 
       - name: Build with Maven skipTests
-        run: mvn clean install -DskipTests
+        run: mvn -B clean install -DskipTests
 
-      - name: Style check
-        run: mvn checkstyle:check
+      #- name: Style check
+      #  run: mvn -B checkstyle:check
 
       - name: Spotbugs check
-        run: mvn spotbugs:check
+        run: mvn -B spotbugs:check
 
       - name: pulsar-rabbitmq-gw tests
-        run: mvn test -DfailIfNoTests=false -pl pulsar-rabbitmq-gw
+        run: mvn -B test -DfailIfNoTests=false -pl pulsar-rabbitmq-gw
 
-      - name: test after build
-        run: mvn test -DfailIfNoTests=false -pl rabbitmq-tests
+      - name: RabbitMQ Java client tests
+        run: mvn -B test -DfailIfNoTests=false -pl rabbitmq-tests
